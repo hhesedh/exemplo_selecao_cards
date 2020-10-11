@@ -39,6 +39,9 @@ export const Card = ({ card, onCardClick, isCardSelected }: CardProps) => {
       {isCardSelected ? checkedIcon : closeIcon}
       <h1>{card.title}</h1>
       <p>{card.subtitle}</p>
+      {isCardSelected ? (
+        <button className="botao">botão card selecionado</button>
+      ) : null}
     </div>
   );
 };

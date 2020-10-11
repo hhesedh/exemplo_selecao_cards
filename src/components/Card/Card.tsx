@@ -1,5 +1,5 @@
 import React from "react";
-import { CardInterface } from "../mock/Cards";
+import { CardInterface } from "../../mock/Cards";
 import "./Card.css";
 
 interface CardProps {

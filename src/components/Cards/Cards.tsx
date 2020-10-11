@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "../Card/Card";
-import { CardInterface, cardsMock } from "../mock/Cards";
+import { CardInterface, cardsMock } from "../../mock/Cards";
 
 export const Cards = () => {
   // Estado para armazenar o array com dados do card

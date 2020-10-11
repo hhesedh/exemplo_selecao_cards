@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Cards } from "./CardContainer/Cards";
+import { Cards } from "./components/Cards/Cards";
 
 function App() {
   return <Cards />;

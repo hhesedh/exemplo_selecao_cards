@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { CardInterface } from "../../mock/Cards";
 import "./Card.css";
 
@@ -7,7 +8,29 @@ interface CardProps {
   onCardClick: (card: CardInterface) => void;
   isCardSelected: boolean;
 }
-export const Card = ({ card, onCardClick, isCardSelected }: CardProps) => {
+
+interface CardContainerProps {
+  isCardSelected: boolean;
+}
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+const CardContainer = styled.div<CardContainerProps>`
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5%;
+  text-align: center;
+  opacity: ${({ isCardSelected }) => (isCardSelected ? 1 : 0.5)};
+`;
+
+const Card: React.FC<CardProps> = (props) => {
+  const { isCardSelected, card, onCardClick } = props;
+
   // Icone que no exemplo abriria o modal apagar o card
   const closeIcon = (
     <i
@@ -24,11 +47,14 @@ export const Card = ({ card, onCardClick, isCardSelected }: CardProps) => {
     ></i>
   );
 
+  // Forma que provavelmente será utilizado icone
+  //<Icon size={18} name={isCardSelected ? "checked" : "close"} />
+
   return (
-    <div
+    <CardContainer
+      isCardSelected={isCardSelected}
       // Verificação condicional se o card que foi passado como prop está selecionado
       // Caso não esteja selecionado, ele adiciona a classe que coloca opacidade no card
-      className={isCardSelected ? "container" : "container cardNotSelected"}
       // Evento de click que seleciona o card
       onClick={(event) => {
         event.preventDefault();
@@ -37,11 +63,13 @@ export const Card = ({ card, onCardClick, isCardSelected }: CardProps) => {
     >
       {/* verficicação condicional do icone que deve ser mostrado */}
       {isCardSelected ? checkedIcon : closeIcon}
-      <h1>{card.title}</h1>
+      <Title>{card.title}</Title>
       <p>{card.subtitle}</p>
       {isCardSelected ? (
         <button className="botao">botão card selecionado</button>
       ) : null}
-    </div>
+    </CardContainer>
   );
 };
+
+export default Card;
